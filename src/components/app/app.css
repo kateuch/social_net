@@ -1,0 +1,52 @@
+/*.app-header {
+display: flex;
+width: 100vw;
+height: 7vw;
+background-color: pink;
+align-items: center;
+}
+
+.app-name {
+padding: center;
+letter-spacing: 3px;
+font-family: sans-serif;
+font-weight: 800;
+font-size: 35px;
+line-height: 50px;
+}
+
+.lable {
+padding-left: 10px 10px;
+height:7vw;
+}*/
+
+.app-wrapper {
+display: grid;
+grid-template-areas:
+"h h "
+"l c";
+grid-template-rows: 60px 1fr;
+grid-template-columns: 2fr 10fr;
+grid-gap: 10px;
+
+width: 90vw;
+margin: 0 auto;
+}
+
+header img {
+	width: 70px;
+	height: 70px;
+}
+
+.header{
+	grid-area: h;
+	background-color: red;
+}
+.links{
+	grid-area: l;
+	background-color: green;
+}
+.content{
+	grid-area: c;
+	background-color: yellow;
+}
