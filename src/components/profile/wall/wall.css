@@ -1,0 +1,9 @@
+.wall{
+	grid-area: mp;
+	color: beige;
+}
+
+ .wall {
+display: grid;
+grid-column:auto;
+}

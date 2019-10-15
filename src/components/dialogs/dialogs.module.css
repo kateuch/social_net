@@ -1,0 +1,20 @@
+.dialogs {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+	color: beige;
+}
+.dialog_items{
+	margin: auto;
+	line-height: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.item.active{
+	color: gold;
+}
+.messages {
+	margin: auto;
+	line-height: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

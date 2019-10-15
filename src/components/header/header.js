@@ -1,11 +1,16 @@
-import React from "react";
+import React, {Componets} from "react";
+import style from './header.module.css';
 
 const Header = () => {
-	return (
-		<header className="header">
-			WhoIs
-		<img className="lable" src='https://obzor.city/projects/it-tomsk/images/tild3339-3038-4639-b061-366237383637__notranslatedetect.jpg'/>
-			</header>
-			)};
+        return (
+                <header>
+		<div className={ style.lable }>
+			<img  src={require("./../pics/original/logo2.png")} />
+				</div> 
+				<div className = { style.name } >
+    			ENOTE 
+    			</div> 
+    			</header>
+)};
 
-export default Header;			
+export default Header;

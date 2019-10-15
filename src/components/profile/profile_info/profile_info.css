@@ -1,0 +1,12 @@
+.avatar {
+	padding-left: 5px;
+}
+
+.avatar img{
+	grid-area: img;
+	width: 100px;
+	height:100px;
+	transition-duration: 1s;
+	position:relative;
+
+}

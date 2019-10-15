@@ -1,0 +1,14 @@
+
+.links {
+	grid-area: l;
+	background-color: beige;
+	
+}
+
+/*a {
+	color: pink;
+}*/
+.item a.active {
+	color: darkolivegreen;
+	text-decoration: none;
+}
