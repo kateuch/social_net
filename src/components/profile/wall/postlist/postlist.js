@@ -3,16 +3,14 @@ import Post from './../post/post.js';
 
 
 const PostList = (props) => {
-	
+
+	let postElement = props.posts.posts.map( post =>
+		<Post id={post.id} message={post.message} likeCount={post.likeCount} />
+		)
+
 	return (
 	<div className='posts_list'>
-		<Post 
-		message={ props.posts.postData[0].message } 
-		likeCount={ props.posts.postData[0].likeCount } 
-		id= { props.posts.postData[0].id }  />
-			<Post message ={ props.posts.postData[1].message } 
-			likeCount= { props.posts.postData[1].likeCount } 
-			id= { props.posts.postData[1].id }  />
+			{ postElement }
 			</div>
 	)
 	

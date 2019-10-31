@@ -10,7 +10,7 @@ import Music from '../music';
 import Settings from '../settings';
 import Wall from '../profile/wall/wall.js';
 import Post from '../profile/wall/post/post.js';
-import Dialogs from '../dialogs';
+import Dialogs from '../dialogs'; 
 import Friends from '../friends';
 
 const App = (props) => {
@@ -20,7 +20,9 @@ const App = (props) => {
 		<Navbar />
 		<div className ='app-wrapper-content'>
 		<Route path='/profile' 
-				render={ () => < Profile posts={ props.state.profilePage } />  }/>
+				render={ () => < Profile 
+					posts={ props.state.profilePage} 
+						addPost={props.addPost} />  }/>
 		<Route path='/dialogs' 
 				render={ () => 	< Dialogs 
 					dialogs= { props.state.dialogsPage } 

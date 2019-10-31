@@ -18,14 +18,20 @@ let messagesElements = props.message.messages.map( message =>
 );
 
 	return (
+<div>
 	<div className={ style.dialogs }>
 		<div className={ style.dialog_items} >
 			{ dialogsElements }
 			</div>
 		<div className={ style.messages }>
 			{ messagesElements }
-			</div>
+				</div>
 	</div>
+		<div className={ style.newMessage }>
+			<textarea className={ style.textarea } cols="20" rows="1"></textarea>
+				<button className={style.button} onClick={ () => { alert("jhkjgsh") }}>Send</button>
+					</div>
+</div>
 		)
 }
 export default Dialogs;

@@ -10,8 +10,8 @@ const Profile = (props) => {
 			<div className="back">
 				</div>
 				<ProfileInfo />
-				<Wall />
-				<PostList posts={props.posts} />
+				<Wall addPost={ props.addPost } />
+				<PostList posts={ props.posts } addPost={ props.addPost } />
 				</div>
 		)
 }
