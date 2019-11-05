@@ -14,6 +14,7 @@ import Dialogs from '../dialogs';
 import Friends from '../friends';
 
 const App = (props) => {
+	
         return (
          <div className='app-wrapper'>
 		<Header />
@@ -21,8 +22,9 @@ const App = (props) => {
 		<div className ='app-wrapper-content'>
 		<Route path='/profile' 
 				render={ () => < Profile 
-					posts={ props.state.profilePage} 
-						addPost={props.addPost} />  }/>
+					profilePage ={ props.state.profilePage} 
+					addPost={props.addPost}
+					updateNewPostText = { props.updateNewPostText } />  }/>
 		<Route path='/dialogs' 
 				render={ () => 	< Dialogs 
 					dialogs= { props.state.dialogsPage } 
