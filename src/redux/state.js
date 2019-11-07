@@ -1,12 +1,8 @@
 import React from 'react';
 
-let rerenderEntireTree = () => {
-	console.log('state changed');
-}
-
-
-let state = {
-	profilePage: {
+let store = {
+	_state: {
+		profilePage: {
 		posts: [
 		{id: 0, message: 'How are you?', likeCount: '17'},
 		{id: 1, message: 'It\'s my first post', likeCount: '15'}
@@ -25,31 +21,38 @@ let state = {
 		{ id: 2, message: 'Yeah!' },
 		{ id: 3, message: 'Yeah!' }
 		]
-	}};
+	}},
+	getState() {
+		return this._state;
+	},
+	
+	rerenderEntireTree () {
+		console.log('state changed');
+		},
 
-	window.state = state; 
+	addPost () {
+		let newPost = {
+			id: 5,
+			message: this._state.profilePage.newPostText,
+			likeCount: '2'
+			};
+				this._state.profilePage.posts.push(newPost);
+				this._state.profilePage.newPostText = '';
+				this._rerenderEntireTree(this._state);
+		}, 
 
-export let addPost = () => {
+	updateNewPostText (newText) {
+		this._state.profilePage.newPostText = newText;
+		this._rerenderEntireTree(this._state);
+		//console.log(state.profilePage.posts.newPostText);
+		},
 
-	let newPost = {
-		id: 5,
-		message: state.profilePage.newPostText,
-		likeCount: '2'
-	};
+	subscribe (observer) {
+		this._rerenderEntireTree = observer; // pattern - observer
+		}
+};
+	 
 
-state.profilePage.posts.push(newPost);
-state.profilePage.newPostText = '';
-rerenderEntireTree(state);
-}; 
+window.store = store;
 
-export let updateNewPostText = (newText) => {
-	state.profilePage.newPostText = newText;
-	rerenderEntireTree(state);
-	//console.log(state.profilePage.posts.newPostText);
-}
-
-export const subscribe = (observer) => {
-	rerenderEntireTree = observer;
-}
-
-export default state;
+export default store;
