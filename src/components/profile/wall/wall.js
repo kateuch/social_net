@@ -1,7 +1,6 @@
 import React from 'react';
-
 import "./wall.css";
-
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/state.js'
 
 
 const Wall = (props) => {
@@ -11,13 +10,13 @@ const Wall = (props) => {
 	let addPost = () => {
 			//let text = newPostElement.current.value;
 			//props.addPost();
-			props.dispatch( {type: 'ADD-POST'});
+			props.dispatch(addPostActionCreator());
 			};
 
 	let onPostChange = () => {
 		let text = newPostElement.current.value;
 		//props.updateNewText(text);
-		let action = { type: 'UPDATE-NEW-POST-TEXT', newText: text };
+		let action = updateNewPostActionCreator(text);
 		props.dispatch(action);
 		};
 
