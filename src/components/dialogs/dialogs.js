@@ -3,19 +3,29 @@ import style from './dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import Message from './message';
 import DialogItem from './dialog_item';
+import { updateMessageBodyCreator, sendMessageCreator} from '../../redux/state.js'
 
 
 
 const Dialogs = (props) => {
 
-let dialogsElements = props.dialogs.dialogs.map( dialog => 
-	<DialogItem name={ dialog.name } id={ dialog.id } />
-);
+let state = props.store.getState().dialogsPage;
 
+let dialogsElements = state.dialogs.map( dialog => 
+	<DialogItem name={ dialog.name } id={ dialog.id } /> );
 
-let messagesElements = props.message.messages.map( message => 
-	<Message message={ message.message } id={ message.id }/>
-);
+let messagesElements = state.messages.map( message => 
+	<Message message={ message.message } id={ message.id }/> ); 
+
+let onSendMessageCklick = () => {
+	props.store.dispatch(sendMessageCreator());
+}
+let newMessageText = state.newMessageText;
+
+let onNewMessageChange = (event) => {
+	let text = event.target.value;
+	props.store.dispatch(updateMessageBodyCreator(text));
+}
 
 	return (
 <div>
@@ -28,8 +38,12 @@ let messagesElements = props.message.messages.map( message =>
 				</div>
 	</div>
 		<div className={ style.newMessage }>
-			<textarea className={ style.textarea } cols="20" rows="1"></textarea>
-				<button className={style.button} onClick={ () => { alert("jhkjgsh") }}>Send</button>
+			<textarea 
+					className={ style.textarea } cols="20" rows="1"
+					placeholder='Enter your message'
+					value = {newMessageText}
+					onChange = {onNewMessageChange} ></textarea>
+				<button className={style.button} onClick={ onSendMessageCklick }>Send</button>
 					</div>
 </div>
 		)
