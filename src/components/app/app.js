@@ -14,7 +14,7 @@ import Dialogs from '../dialogs';
 import Friends from '../friends';
 
 const App = (props) => {
-
+debugger
         return (
          <div className='app-wrapper'>
 		<Header />
@@ -26,7 +26,7 @@ const App = (props) => {
 					dispatch={props.dispatch} />  }/>
 		<Route path='/dialogs' 
 				render={ () => 	< Dialogs 
-					store ={props.store}
+					store = {props.store}
 					/*dialogs= { props.state.dialogsPage }*/
 					/*message={props.state.dialogsPage }*/ /> } />
 		<Route path='/news' render={ () => < News /> } />

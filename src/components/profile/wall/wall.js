@@ -1,6 +1,6 @@
 import React from 'react';
 import "./wall.css";
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/state.js'
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/profile_reducer.js'
 
 
 const Wall = (props) => {

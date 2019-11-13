@@ -3,12 +3,11 @@ import style from './dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import Message from './message';
 import DialogItem from './dialog_item';
-import { updateMessageBodyCreator, sendMessageCreator} from '../../redux/state.js'
-
+import { updateMessageBodyCreator, sendMessageCreator} from '../../redux/dialogs_reducer.js'
 
 
 const Dialogs = (props) => {
-
+debugger;
 let state = props.store.getState().dialogsPage;
 
 let dialogsElements = state.dialogs.map( dialog => 
