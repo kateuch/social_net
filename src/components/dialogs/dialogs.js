@@ -7,23 +7,21 @@ import { updateMessageBodyCreator, sendMessageCreator} from '../../redux/dialogs
 
 
 const Dialogs = (props) => {
-debugger;
-let state = props.store.getState().dialogsPage;
 
-let dialogsElements = state.dialogs.map( dialog => 
+let dialogsElements = props.dialogsPage.dialogs.map( dialog => 
 	<DialogItem name={ dialog.name } id={ dialog.id } /> );
 
-let messagesElements = state.messages.map( message => 
+let messagesElements = props.dialogsPage.messages.map( message => 
 	<Message message={ message.message } id={ message.id }/> ); 
 
-let onSendMessageCklick = () => {
-	props.store.dispatch(sendMessageCreator());
+let onSendMessageClick = () => {
+	props.sendMessage();
 }
-let newMessageText = state.newMessageText;
+let newMessageText = props.dialogsPage.newMessageText;
 
 let onNewMessageChange = (event) => {
 	let text = event.target.value;
-	props.store.dispatch(updateMessageBodyCreator(text));
+	props.updateMessageBody(text);
 }
 
 	return (
@@ -42,9 +40,9 @@ let onNewMessageChange = (event) => {
 					placeholder='Enter your message'
 					value = {newMessageText}
 					onChange = {onNewMessageChange} ></textarea>
-				<button className={style.button} onClick={ onSendMessageCklick }>Send</button>
+				<button className={style.button} onClick={ onSendMessageClick }>Send</button>
 					</div>
 </div>
-		)
-}
+)}
+
 export default Dialogs;

@@ -36,8 +36,8 @@
 display: grid;
 grid-template-areas:
 "b b"
-"img pi"
-"mp mp";
+"img mp";
+
 grid-template-rows: 2fr 1fr 1fr;
 grid-template-columns: .6fr 5fr;
 grid-gap: 5px;

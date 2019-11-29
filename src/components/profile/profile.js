@@ -1,25 +1,17 @@
 import React from 'react';
 import "./profile.css";
-import Wall from "./wall/wall.js";
+import WallPostContainer from "./wall/wall-postsContainer.js";
 import ProfileInfo from './profile_info';
-import PostList from './wall/postlist';
+import PostListContainer from './wall/postlist/postlistContainer.js';
 
 const Profile = (props) => {
-
 	return (
 		<div className="content">
 			<div className="back">
 				</div>
 				<ProfileInfo />
-				<Wall 
-					dispatch={ props.dispatch } 
-					/>
-				<PostList 
-					posts={ props.profilePage.posts } 
-					newPostText = { props.profilePage.newPostText } 
-					dispatch={ props.dispatch }
-					 />
-				</div>
+				<WallPostContainer />
+						</div>
 		)
 }
  export default Profile;

@@ -1,37 +1,33 @@
 import React from 'react';
 import "./wall.css";
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../redux/profile_reducer.js'
+import PostListContainer from './postlist/postlistContainer'
 
 
 const Wall = (props) => {
-
+	debugger
 	let newPostElement = React.createRef();
 
-	let addPost = () => {
-			//let text = newPostElement.current.value;
-			//props.addPost();
-			props.dispatch(addPostActionCreator());
-			};
+	let onAddPost = () => {
+			props.addPost();
+			};  
 
 	let onPostChange = () => {
 		let text = newPostElement.current.value;
-		//props.updateNewText(text);
-		let action = updateNewPostActionCreator(text);
-		props.dispatch(action);
+		props.updateNewText(text);
 		};
-
-		console.log(props.newPostText);
 
 		return (
 			<div className="wall">
 					<div className='area'>
 						<span>New post</span>
 							<textarea 
+							placeholder='Enter your message'
 							ref={ newPostElement } 
 							onChange={ onPostChange }
 							value={ props.newPostText } cols="30" rows="1" />
-								<button className="button" onClick= { addPost } >Add post</button>
+								<button className="button" onClick= { onAddPost } >Add post</button>
 						</div>
+						<PostListContainer />
 						</div>
 		)}
 
