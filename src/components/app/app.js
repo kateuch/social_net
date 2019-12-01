@@ -8,10 +8,8 @@ import Profile from '../profile';
 import News from '../news';
 import Music from '../music';
 import Settings from '../settings';
-//import Wall from '../profile/ / .js';
-//import Post from '../profile/ /post/post.js';
 import DialogsContainer from '../dialogs/dialogsContainer.js'; 
-import Friends from '../friends';
+import FriendsContainer from '../friends/friendsContainer';
 
 const App = (props) => {
 	  return (
@@ -26,7 +24,7 @@ const App = (props) => {
 		<Route path='/news' render={ () => < News /> } />
 		<Route path='/music' render={ () => < Music /> } />
 		<Route path='/settings' render={ () => < Settings /> } />
-		<Route path='/friends' render={ () => < Friends /> } />
+		<Route path='/friends' render={ () => < FriendsContainer /> } />
 		</div>
 		</div>
 		
