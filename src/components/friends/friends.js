@@ -5,29 +5,29 @@ import * as axios from 'axios';
 import userPhoto from './../pics/person.jpg';
 
 
-let Friends = (props) => { 
+class Friends extends React.Component { 
+	constructor(props) {
+		super(props);
 
-let getUsers = () => {
-		if (props.users.length === 0) {
+			alert('new');
+			axios.get('https://social-network.samuraijs.com/api/1.0/users')
+				.then(response => {
+				this.props.setUsers(response.data.items)}
+				)}
+			
 
-		axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-			debugger
-			props.setUsers(response.data.items);
-		})
-	}};
-	
-	return	<div className='friends'>
-			<button onClick={getUsers}>Get Users</button>
-			{
-			 props.users.map(u => <div key={u.id}>
+	render () {
+		return	<div className='friends'>
+			
+			{ this.props.users.map(u => <div key={u.id}>
 				<span>
 					<div>
 						<img src={ u.photos.small !=null ? u.photos.small : userPhoto }  className={style.userAvatar}/>
 					</div>
 					<div>
 					{u.follow 
-						? <button onClick={() => {props.follow(u.id)} }>Follow</button> 
-						: <button onClick={() => {props.unfollow(u.id)} }>Unfollow</button>}
+						? <button onClick={() => {this.props.follow(u.id)} }>Follow</button>
+						: <button onClick={() => {this.props.unfollow(u.id)} }>Unfollow</button>}
 					</div>
 				</span>
 				<span>
@@ -40,9 +40,12 @@ let getUsers = () => {
 					<div>{'u.location.country'}</div>
 					</span>
 				</span>
-				</div>
+				</div> 
 			)}
 		</div> 
-		}
+		}}
+	
+	
+
 
 export default Friends;
