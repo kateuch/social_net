@@ -1,30 +1,32 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_USERS_COUNT = 'SET_USERS_COUNT';
 
 let initialState = {
-			users: [
-			/*{id: 0, avatar: require('./../components/pics/person.jpg'), follow: true, name: 'Emma', status: 'Hi, guys' , location: {city: 'Moscow', country: 'Russia'} },
-			{id: 1, avatar: require('./../components/pics/person.jpg'), follow: true, name: 'Luck', status: 'Hi, guys. Yo-yo!' , location: {city: 'Cidney', country: 'Australia'} },
-			{id: 2, avatar: require('./../components/pics/person.jpg'), follow: false,  name: 'Emma', status: 'I\'m here'  , location: {city: 'Berlin', country: 'Germany'} }*/
-		]};
+			users: [],
+			pageSize: 10,
+			totalUsersCount: 0,
+			currentPage: 2,
+
+		};
 
 const friendsReducer = (state = initialState, action) => {
 	
 	switch (action.type) {
-		case FOLLOW:
+		case FOLLOW: {
 			return {
 				...state,
-				//users:[...state.users] //запись идентичная нижней
 				users: state.users.map ( u => {
 					if (u.id === action.userId) {
 					return {...u, follow: false}
 				}
 				return u;
 			})
-			}
+			}}
 
-		case UNFOLLOW:
+		case UNFOLLOW: {
 			return {
 				...state,
 				users: state.users.map ( u => {
@@ -33,10 +35,17 @@ const friendsReducer = (state = initialState, action) => {
 				}
 				return u;	
 			})
-			}
+			}}
 
-		case SET_USERS:
-				return {...state, users: [...state.users, ...action.users]};
+		case SET_USERS: {
+				return {...state, users: action.users};
+		}
+		case SET_CURRENT_PAGE: {
+				return {...state, currentPage: action.currentPage};
+		}
+		case SET_USERS_COUNT: {
+				return {...state, totalUsersCount: action.count};
+		}
 									
 		default:
 			return state;
@@ -45,5 +54,8 @@ const friendsReducer = (state = initialState, action) => {
 export const followActionCreator = (userId) => ({type: FOLLOW, userId});
 export const unfollowActionCreator = (userId) => ({type: UNFOLLOW, userId});
 export const setUsersActionCreator = (users) => ({type: SET_USERS, users});
+export const currentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const countUsersActionCreator = (totalUsersCount) => ({type: SET_USERS_COUNT, count: totalUsersCount});
+
 
 export default friendsReducer;
