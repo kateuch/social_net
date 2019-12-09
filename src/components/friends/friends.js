@@ -1,52 +1,35 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import style from './friends.module.css';
-import * as axios from 'axios';
 import userPhoto from './../pics/person.jpg';
 
+let Friends = (props) => {
 
-class Friends extends React.Component { 
-	componentDidMount () {
-			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-				.then(response => {
-				this.props.setUsers(response.data.items);
-				this.props.setTotalUsersCount(response.data.totalCount);
-			});
-			}	
+let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+	
+let pages = [];
+for ( let i=1; i <= pagesCount; i++) {
+pages.push(i);
+}
 
-	onPageChanged = (pageNumber) => {
-			 this.props.setCurrentPage(pageNumber);
-			 axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-				.then(response => {
-				this.props.setUsers(response.data.items);
-				
-			});
-	}				
-
-	render () {
-debugger
-		let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-		let pages = [];
-			for ( let i=1; i <= pagesCount; i++) {
-			pages.push(i);
-			}
-		return	<div>
+	return 	<div>
 			<div> 
-				{ pages.map ( p => { 
-					return <span className={this.props.currentPage === p && style.selected}
-					onClick={ () => {this.onPageChanged(p); }}>{p}</span>
+				{pages.map( p => { 
+					return <span className={props.currentPage === p && style.selected}
+					onClick={ () => 
+						{props.onPageChanged(p);
+						 }}>{p}</span>
 				})}		
 			</div>
 			{
-			 this.props.users.map(u => <div key={u.id}>
+			 props.users.map(u => <div key={u.id}>
 				<span>
 					<div>
 						<img src={ u.photos.small !=null ? u.photos.small : userPhoto }  className={style.userAvatar}/>
 					</div>
 					<div>
 					{u.follow 
-						? <button onClick={() => {this.props.follow(u.id)} }>Follow</button>
-						: <button onClick={() => {this.props.unfollow(u.id)} }>Unfollow</button>}
+						? <button onClick={() => {props.follow(u.id)} }>Follow</button>
+						: <button onClick={() => {props.unfollow(u.id)} }>Unfollow</button>}
 					</div>
 				</span>
 				<span>
@@ -62,7 +45,8 @@ debugger
 				</div> 
 			)}
 		</div> 
-		}}
-	
+		}
+
+
 
 export default Friends;
