@@ -4,7 +4,7 @@ import PostListContainer from './postlist/postlistContainer'
 
 
 const Wall = (props) => {
-	debugger
+
 	let newPostElement = React.createRef();
 
 	let onAddPost = () => {

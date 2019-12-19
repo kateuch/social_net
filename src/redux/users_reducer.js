@@ -14,15 +14,14 @@ let initialState = {
 			isFetching: false
 		};
 
-const friendsReducer = (state = initialState, action) => {
-	
+const usersReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FOLLOW: {
 			return {
 				...state,
 				users: state.users.map ( u => {
 					if (u.id === action.userId) {
-					return {...u, follow: false}
+					return {...u, followed: false}
 				}
 				return u;
 			})
@@ -33,7 +32,7 @@ const friendsReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map ( u => {
 					if (u.id === action.userId) {
-					return {...u, follow: true}
+					return {...u, followed: true}
 				}
 				return u;	
 			})
@@ -56,12 +55,12 @@ const friendsReducer = (state = initialState, action) => {
 			return state;
 }};
 
-export const followActionCreator = (userId) => ({type: FOLLOW, userId});
-export const unfollowActionCreator = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersActionCreator = (users) => ({type: SET_USERS, users});
-export const currentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const countUsersActionCreator = (totalUsersCount) => ({type: SET_USERS_COUNT, count: totalUsersCount});
-export const setIsFetchingActionCreator = (isFetching) => ({type: TOGGLE_IS_FETCHING, toggleFetching: isFetching});
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_USERS_COUNT, count: totalUsersCount});
+export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, toggleFetching: isFetching});
 
 
-export default friendsReducer;
+export default usersReducer;

@@ -1,14 +1,21 @@
 import React from 'react';
 import './profile_info.css';
+import Preloader from './../../common/Preloader/preloader'
 
 
 const ProfileInfo = (props) => {
+	if (!props.profile) {
+		return <Preloader />
+	}
 	return (
 	<div>
 		<div className="avatar">
-			<img src={require("./../../pics/person.jpg")} alt="аватар" />
+			<img src={ props.profile.photos.large? props.profile.photos.large : require("./../../pics/person.jpg")} alt="аватар" />
 				</div>
-					<div className="person_info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui perspiciatis itaque architecto inventore, minus vel voluptatibus autem dolorum, eveniet dicta nisi animi fugit officia voluptas ea hic odio tempora odit.
+					<div className="person_info">
+						<div>aboutMe: {props.profile.aboutMe}</div>
+						<div>I'm looking for a job: {props.profile.lookingForAJob ? 'Yes' : 'No' } </div>
+						<div>My skills: {props.profile.lookingForAJobDescription}</div>
 					</div>
 					</div>
 )}

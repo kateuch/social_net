@@ -22,3 +22,10 @@ grid-template-rows: 1fr;
 grid-template-columns: .6fr 5fr;
 grid-gap: 0px;
  }
+
+ .loginBlock {
+ 	float: right;
+ }
+ .loginBlock a {
+	color: blue;
+}

@@ -1,7 +1,8 @@
 import React, {Componets} from "react";
 import style from './header.module.css';
+import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
         return (
                 <header>
 		<div className={ style.lable }>
@@ -10,6 +11,10 @@ const Header = () => {
 				<div className = { style.name } >
     			ENOTE 
     			</div> 
+    			<div className={ style.loginBlock }>
+    			{props.isAuth ? props.login 
+    				:	<NavLink to = {'/login'}>Sign in</NavLink> }
+    			</div>
     			</header>
 )};
 
