@@ -11,9 +11,7 @@ let pages = [];
 for ( let i=1; i <= pagesCount; i++) {
 pages.push(i);
 }
-	return 	<div>
-			<div> 
-				{pages.map( p => { 
+	return 	<div>-map( p => { 
 					return <span className={props.currentPage === p && style.selected}
 					onClick={ () => 
 						{props.onPageChanged(p);
