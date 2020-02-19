@@ -9,6 +9,7 @@ import Music from '../music';
 import Settings from '../settings';
 import DialogsContainer from '../dialogs/dialogsContainer.js'; 
 import UsersContainer from '../users/usersContainer';
+import LoginPage from '../login/login';
 
 const App = (props) => {
 	  return (
@@ -21,8 +22,9 @@ const App = (props) => {
 		<Route path='/dialogs' 
 				render={ () => < DialogsContainer  /> } />
 		<Route path='/news' render={ () => < News /> } />
-		<Route path='/music' render={ () => < Music /> } />
+		<Route path='/music' render={ () => < Music /> } />	
 		<Route path='/settings' render={ () => < Settings /> } />
+		<Route path='/login' render={ () => < LoginPage /> } />
 		<Route path='/users' render={ () => < UsersContainer /> } />
 		</div>
 		</div>

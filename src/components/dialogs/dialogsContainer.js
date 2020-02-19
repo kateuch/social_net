@@ -6,12 +6,13 @@ import style from './dialogs.module.css';
 import Dialogs from './dialogs';
 import { updateMessageBodyCreator, sendMessageCreator} from '../../redux/dialogs_reducer.js';
 import {connect} from 'react-redux';
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
-let mapStateToProps =(state) => {
-	return {
-		dialogsPage: state.dialogsPage
-		}
-};
+
+let mapStateToProps =(state) => ({
+	dialogsPage: state.dialogsPage,
+	isAuth: state.auth.isAuth
+});
 
 let mapDispatchToProps =(dispatch) => {
 	return {
@@ -24,6 +25,8 @@ let mapDispatchToProps =(dispatch) => {
 	}
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default DialogsContainer;
