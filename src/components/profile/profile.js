@@ -7,8 +7,8 @@ import PostListContainer from './wall/postlist/postlistContainer.js';
 const Profile = (props) => {
 	return (
 		<div className="content">
-			<div className="back">
-				</div>
+			{/*<div className="back">
+				</div>*/}
 				<ProfileInfo profile={props.profile}/>
 				<WallPostContainer />
 						</div>
