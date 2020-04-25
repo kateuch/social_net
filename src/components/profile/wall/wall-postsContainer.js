@@ -11,14 +11,10 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
 	return {
-		addPost: () => {
-			dispatch(addPostActionCreator())
-		},
-		updateNewText: (text) => {
-			let action = updateNewPostActionCreator(text);
-			dispatch(action);
-		}};
-}
+		addPost: (newPost) => {
+			dispatch(addPostActionCreator(newPost))
+		}
+}}
 
 let WallPostContainer = connect(mapStateToProps, mapDispatchToProps)(Wall);
 

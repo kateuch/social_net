@@ -1,36 +1,41 @@
 import React from 'react';
 import "./wall.css";
 import PostListContainer from './postlist/postlistContainer'
+import { Field, reduxForm } from 'redux-form';
 
+const AddNewPostForm = (props) => {
+	return (
+	<form onSubmit = {props.handleSubmit}> 
+		<div>
+			<Field className={ 'style.textarea' } cols="20" rows="1"
+					placeholder={'Type message'}
+					name = {'newPost'}
+					component={'textarea'} />
+				<div>
+				<button type="submit" className="button">Add post</button>
+				</div>
+			</div>	
+		</form>
+	)
+}
+
+const NewPostReduxForm = reduxForm({form: "post"})(AddNewPostForm);
 
 const Wall = (props) => {
 
-	let newPostElement = React.createRef();
-
-	let onAddPost = () => {
-			props.addPost();
-			};  
-
-	let onPostChange = () => {
-		let text = newPostElement.current.value;
-		props.updateNewText(text);
-		};
-
+	const submitData = (values) => {
+		props.addPostActionCreator(values.newPost);
+	}
 		return (
 			<div className="wall">
 					<div className='area'>
 						<span>New post</span>
-							<textarea 
-							placeholder='Enter your message'
-							ref={ newPostElement } 
-							onChange={ onPostChange }
-							value={ props.newPostText } cols="30" rows="1" />
-								<button className="button" onClick= { onAddPost } >Add post</button>
+							<NewPostReduxForm onSubmit={submitData}/>
 						</div>
 						<PostListContainer />
 						</div>
-		)}
+		)
+	}
+
 
  export default Wall;
-
- 

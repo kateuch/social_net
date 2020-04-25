@@ -1,4 +1,3 @@
-const UPDATE_NEW_MES_TEXT = 'UPDATE-NEW-MES-TEXT';
 const SEND_MES = 'SEND-MES';
 
 
@@ -14,7 +13,6 @@ let initialState = {
 			{ id: 2, message: 'Yeah!' },
 			{ id: 3, message: 'Yeah!' }
 			],
-			newMessageText: ''
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -22,25 +20,18 @@ const dialogsReducer = (state = initialState, action) => {
 	let stateCopy;
 
 	switch (action.type) {
-		case UPDATE_NEW_MES_TEXT:
-			return {
-			...state,
-			newMessageText: action.newMes
-			};
-			
 		case SEND_MES:
-			let text = state.newMessageText;
+			let text = action.newMessageText;
 			return  {
-			...state,
-			messages: [...state.messages, { id: 6, message: text } ],
-			newMessageText: " "
+				...state,
+				messages: [...state.messages, { id: 6, message: text } ]
 			};					
 		default:
 			return state;
 }};
 
 
-export const sendMessageCreator = () => ({type: SEND_MES});
-export const updateMessageBodyCreator = (text) => ({type: UPDATE_NEW_MES_TEXT, newMes: text});
+export const sendMessageCreator = (newMessageText) => ({type: SEND_MES, newMessageText});
+
 
 export default dialogsReducer;
